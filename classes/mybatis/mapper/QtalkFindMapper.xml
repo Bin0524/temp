@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.qtalk.management.mapper.QtalkFindMapper">
+
+    <resultMap id="BaseResultMap" type="com.qunar.qtalk.management.vo.FindApplicationReqVo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="application_type" property="applicationType" jdbcType="INTEGER"/>
+        <result column="visible_range" property="visibleRange" jdbcType="VARCHAR"/>
+        <result column="application_name" property="applicationName" jdbcType="VARCHAR"/>
+        <result column="application_class" property="applicationClass" jdbcType="VARCHAR"/>
+        <result column="application_icon" property="applicationIcon" jdbcType="VARCHAR"/>
+        <result column="application_version" property="applicationVersion" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="ios_version" property="IOSVersion" jdbcType="INTEGER"/>
+        <result column="android_version" property="AndroidVersion" jdbcType="INTEGER"/>
+        <result column="ios_bundle" property="IOSBundle" jdbcType="VARCHAR"/>
+        <result column="android_bundle" property="AndroidBundle" jdbcType="VARCHAR"/>
+        <result column="application_desc" property="desc" jdbcType="VARCHAR"/>
+        <result column="disable_flag" property="disableFlag" jdbcType="SMALLINT"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="h5_action" property="h5Action" jdbcType="VARCHAR"/>
+        <result column="entrance" property="entrance" jdbcType="VARCHAR"/>
+        <result column="properties" property="properties" jdbcType="VARCHAR"/>
+        <result column="module" property="module" jdbcType="VARCHAR"/>
+        <result column="show_native_nav" property="showNativeNav" jdbcType="VARCHAR"/>
+        <result column="nav_title" property="navTitle" jdbcType="VARCHAR"/>
+        <result column="valid_platform" property="validPlatform" jdbcType="VARCHAR"/>
+        <result column="visible_platform" property="visiblePlatform" jdbcType="SMALLINT"/>
+        <result column="bundle_name" property="bundleName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        application_type,visible_range,application_name,application_class,application_icon,application_version,
+        create_time,update_time,ios_version,android_version,ios_bundle,android_bundle,application_desc,disable_flag
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.qunar.qtalk.management.vo.FindApplicationReqVo">
+        insert into find_application_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="applicationType != null">
+                application_type,
+            </if>
+            <if test="visibleRange != null">
+                visible_range,
+            </if>
+            <if test="applicationName != null">
+                application_name,
+            </if>
+            <if test="applicationClass != null">
+                application_class,
+            </if>
+            <if test="applicationIcon != null">
+                application_icon,
+            </if>
+            <if test="applicationVersion != null">
+                application_version,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="IOSVersion != null">
+                ios_version,
+            </if>
+            <if test="AndroidVersion != null">
+                android_version,
+            </if>
+            <if test="IOSBundle != null">
+                ios_bundle,
+            </if>
+            <if test="AndroidBundle != null">
+                android_bundle,
+            </if>
+            <if test="desc != null">
+                application_desc,
+            </if>
+            <if test="disableFlag != null">
+                disable_flag,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="applicationType != null">
+                #{applicationType,jdbcType=VARCHAR},
+            </if>
+            <if test="visibleRange != null">
+                #{visibleRange,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationName != null">
+                #{applicationName,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationClass != null">
+                #{applicationClass,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationIcon != null">
+                #{applicationIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationVersion != null">
+                #{applicationVersion,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="IOSVersion != null">
+                #{IOSVersion,jdbcType=INTEGER},
+            </if>
+            <if test="AndroidVersion != null">
+                #{AndroidVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="IOSBundle != null">
+                #{IOSBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="AndroidBundle != null">
+                #{AndroidBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="disableFlag != null">
+                #{disableFlag,jdbcType=SMALLINT},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getIOSApplication" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+            parameterType="java.lang.Integer">
+        select
+        member_id as memberId,
+        application_name as memberName,
+        application_class as groupName,
+        application_icon as memberIcon,
+        ios_bundle AS memberAction,
+        visible_range AS visibleRange
+        from find_application_table
+        where ios_version <![CDATA[ <= ]]> #{version} and disable_flag=0;
+    </select>
+
+
+    <select id="getAndroidApplication" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+            parameterType="java.lang.Integer">
+       select
+        member_id as memberId,
+        application_name as memberName,
+        application_class as groupName,
+        application_icon as memberIcon,
+        android_bundle AS memberAction,
+        visible_range AS visibleRange
+        from find_application_table
+        where android_version <![CDATA[ <= ]]> #{version} and disable_flag=0;
+    </select>
+<select id="getAndroidApplicationV2" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+        parameterType="java.lang.Integer">
+    select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.android_bundle AS memberAction,
+        a.visible_range AS visibleRange
+    from  (select distinct on(application_name)* from find_application_table where android_version <![CDATA[ <= ]]> #{version} and disable_flag=0
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+    <select id="getIOSApplicationV2" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+            parameterType="java.lang.Integer">
+    select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.android_bundle AS memberAction,
+        a.visible_range AS visibleRange
+    from  (select distinct on(application_name)* from find_application_table where ios_version <![CDATA[ <= ]]> #{version} and disable_flag=0
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+    <select id="getGroupName" resultType="com.qunar.qtalk.management.common.model.ApplicationGroup">
+    select
+    id as groupId,
+    group_name as groupName,
+    group_icon as groupIcon
+    from find_class_table;
+</select>
+
+    <select id="getApplicationGroupByName" resultType="com.qunar.qtalk.management.common.model.ApplicationGroup"
+            parameterType="java.lang.String">
+    select
+    id as groupId,
+    group_name as groupName,
+    group_icon as groupIcon
+    from find_class_table where group_name=#{groupName};
+    </select>
+
+    <select id="selectMaxMemberId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select max(member_id) from find_application_table where application_class=#{group};
+    </select>
+
+    <select id="selectApplicationByNameAndGroup" resultType="java.lang.String">
+        select application_name from find_application_table where application_name=#{name} and application_class#{group} limit 1;
+    </select>
+
+</mapper>

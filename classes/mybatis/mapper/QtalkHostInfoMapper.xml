@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.qtalk.management.mapper.QtalkHostInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.qunar.qtalk.management.common.dto.HostInfoModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="host" property="host" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="host_admin" property="hostAdmin" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,host,description,create_time,host_admin
+    </sql>
+
+    <select id="selectHostInfoByHost" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from host_info where host=#{host};
+    </select>
+
+    <select id="selectHostInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from host_info order by id limit 1;
+    </select>
+</mapper>

@@ -1,0 +1,45 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.qunar.qtalk.management.common.config.DataSourceConfig",
+      "name": "spring.datasource.primary",
+      "sourceMethod": "masterDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.qunar.qtalk.management.common.config.DataSourceConfig",
+      "name": "spring.datasource.secondary",
+      "sourceMethod": "slaveDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.qunar.qtalk.management.common.concurrent.ThreadPoolConfig",
+      "name": "thread.pool",
+      "type": "com.qunar.qtalk.management.common.concurrent.ThreadPoolConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.qunar.qtalk.management.common.concurrent.ThreadPoolConfig",
+      "defaultValue": 0,
+      "name": "thread.pool.core-pool-size",
+      "description": "Set the ThreadPoolExecutor's core pool size.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.qunar.qtalk.management.common.concurrent.ThreadPoolConfig",
+      "defaultValue": 0,
+      "name": "thread.pool.max-pool-size",
+      "description": "Set the ThreadPoolExecutor's maximum pool size.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.qunar.qtalk.management.common.concurrent.ThreadPoolConfig",
+      "defaultValue": 0,
+      "name": "thread.pool.queue-capacity",
+      "description": "Set the capacity for the ThreadPoolExecutor's BlockingQueue.",
+      "type": "java.lang.Integer"
+    }
+  ]
+}

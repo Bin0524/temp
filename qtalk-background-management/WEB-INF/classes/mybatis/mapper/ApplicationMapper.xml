@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.qtalk.management.mapper.ApplicationMapper">
+    <resultMap id="BaseResultMap" type="com.qunar.qtalk.management.common.model.Application">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="application_type" property="applicationType" jdbcType="INTEGER"/>
+        <result column="visible_range" property="visibleRange" jdbcType="VARCHAR"/>
+        <result column="application_name" property="applicationName" jdbcType="VARCHAR"/>
+        <result column="application_class" property="applicationClass" jdbcType="VARCHAR"/>
+        <result column="application_icon" property="applicationIcon" jdbcType="VARCHAR"/>
+        <result column="application_version" property="applicationVersion" jdbcType="INTEGER"/>
+        <result column="ios_version" property="iosVersion" jdbcType="INTEGER"/>
+        <result column="android_version" property="androidVersion" jdbcType="INTEGER"/>
+        <result column="ios_bundle" property="iosBundle" jdbcType="VARCHAR"/>
+        <result column="android_bundle" property="androidBundle" jdbcType="VARCHAR"/>
+        <result column="application_desc" property="applicationDesc" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="disable_flag" property="disableFlag" jdbcType="SMALLINT"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="h5_action" property="h5Action" jdbcType="VARCHAR"/>
+        <result column="entrance" property="entrance" jdbcType="VARCHAR"/>
+        <result column="properties" property="properties" jdbcType="VARCHAR"/>
+        <result column="module" property="module" jdbcType="VARCHAR"/>
+        <result column="show_native_nav" property="showNativeNav" jdbcType="BOOLEAN"/>
+        <result column="nav_title" property="navTitle" jdbcType="VARCHAR"/>
+        <result column="valid_platform" property="validPlatform" jdbcType="VARCHAR"/>
+        <result column="visible_platform" property="visiblePlatform" jdbcType="SMALLINT"/>
+        <result column="bundle_name" property="bundleName" jdbcType="VARCHAR"/>
+        <result column="h5_action_ios" property="h5ActionIOS" jdbcType="VARCHAR"/>
+        <result column="h5_action_android" property="h5ActionAndroid" jdbcType="VARCHAR"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="SMALLINT"/>
+        <result column="native_flag" property="nativeFlag" jdbcType="SMALLINT"/>
+        <result column="app_uuid" property="appUUID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        application_type,visible_range,application_name,application_class,application_icon,application_version,member_id,entrance,h5_action,
+        properties,module,show_native_nav,bundle_name,nav_title,h5_action_ios,h5_action_android,visible_platform,create_time,update_time,
+        ios_version,android_version,ios_bundle,android_bundle,application_desc,disable_flag,delete_flag,native_flag,app_uuid
+    </sql>
+
+    <insert id="insert" parameterType="com.qunar.qtalk.management.common.model.Application">
+    insert into find_application_table (id, application_type, visible_range,
+      application_name, application_class, application_icon,
+      application_version, ios_version, android_version,
+      ios_bundle, android_bundle, application_desc,
+      create_time, update_time, disable_flag,
+      member_id, h5_action, entrance,
+      properties, module, show_native_nav,
+      nav_title, valid_platform, visible_platform,
+      bundle_name,h5_action_ios,h5_action_android)
+    values (#{id,jdbcType=INTEGER}, #{applicationType,jdbcType=INTEGER}, #{visibleRange,jdbcType=VARCHAR},
+      #{applicationName,jdbcType=VARCHAR}, #{applicationClass,jdbcType=VARCHAR}, #{applicationIcon,jdbcType=VARCHAR},
+      #{applicationVersion,jdbcType=INTEGER}, #{iosVersion,jdbcType=INTEGER}, #{androidVersion,jdbcType=INTEGER},
+      #{iosBundle,jdbcType=VARCHAR}, #{androidBundle,jdbcType=VARCHAR}, #{applicationDesc,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{disableFlag,jdbcType=SMALLINT},
+      #{memberId,jdbcType=INTEGER}, #{h5Action,jdbcType=VARCHAR}, #{entrance,jdbcType=VARCHAR},
+      #{properties,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, #{showNativeNav,jdbcType=VARCHAR},
+      #{navTitle,jdbcType=VARCHAR}, #{validPlatform,jdbcType=VARCHAR}, #{visiblePlatform,jdbcType=SMALLINT},
+      #{bundleName,jdbcType=VARCHAR},#{h5ActionIOS,jdbcType=VARCHAR},#{h5ActionAndroid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.qunar.qtalk.management.common.model.Application">
+        insert into find_application_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="applicationType != null">
+                application_type,
+            </if>
+            <if test="visibleRange != null">
+                visible_range,
+            </if>
+            <if test="applicationName != null">
+                application_name,
+            </if>
+            <if test="applicationClass != null">
+                application_class,
+            </if>
+            <if test="applicationIcon != null">
+                application_icon,
+            </if>
+            <if test="applicationVersion != null">
+                application_version,
+            </if>
+            <if test="iosVersion != null">
+                ios_version,
+            </if>
+            <if test="androidVersion != null">
+                android_version,
+            </if>
+            <if test="iosBundle != null">
+                ios_bundle,
+            </if>
+            <if test="androidBundle != null">
+                android_bundle,
+            </if>
+            <if test="applicationDesc != null">
+                application_desc,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="disableFlag != null">
+                disable_flag,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="h5Action != null">
+                h5_action,
+            </if>
+            <if test="entrance != null">
+                entrance,
+            </if>
+            <if test="properties != null">
+                properties,
+            </if>
+            <if test="module != null">
+                module,
+            </if>
+            <if test="showNativeNav != null">
+                show_native_nav,
+            </if>
+            <if test="navTitle != null">
+                nav_title,
+            </if>
+            <if test="validPlatform != null">
+                valid_platform,
+            </if>
+            <if test="visiblePlatform != null">
+                visible_platform,
+            </if>
+            <if test="bundleName != null">
+                bundle_name,
+            </if>
+
+            <if test="h5ActionIOS != null">
+                h5_action_ios,
+            </if>
+
+            <if test="h5ActionAndroid != null">
+                h5_action_android,
+            </if>
+            <if test="deleteFlag!=null">
+                delete_flag,
+            </if>
+            <if test="nativeFlag!=null">
+                native_flag,
+            </if>
+            <if test="appUUID !=null">
+                app_uuid,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="applicationType != null">
+                #{applicationType,jdbcType=INTEGER},
+            </if>
+            <if test="visibleRange != null">
+                #{visibleRange,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationName != null">
+                #{applicationName,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationClass != null">
+                #{applicationClass,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationIcon != null">
+                #{applicationIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationVersion != null">
+                #{applicationVersion,jdbcType=INTEGER},
+            </if>
+            <if test="iosVersion != null">
+                #{iosVersion,jdbcType=INTEGER},
+            </if>
+            <if test="androidVersion != null">
+                #{androidVersion,jdbcType=INTEGER},
+            </if>
+            <if test="iosBundle != null">
+                #{iosBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="androidBundle != null">
+                #{androidBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationDesc != null">
+                #{applicationDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disableFlag != null">
+                #{disableFlag,jdbcType=SMALLINT},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="h5Action != null">
+                #{h5Action,jdbcType=VARCHAR},
+            </if>
+            <if test="entrance != null">
+                #{entrance,jdbcType=VARCHAR},
+            </if>
+            <if test="properties != null">
+                #{properties,jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+                #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="showNativeNav != null">
+                #{showNativeNav,jdbcType=VARCHAR},
+            </if>
+            <if test="navTitle != null">
+                #{navTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="validPlatform != null">
+                #{validPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="visiblePlatform != null">
+                #{visiblePlatform,jdbcType=SMALLINT},
+            </if>
+            <if test="bundleName != null">
+                #{bundleName,jdbcType=VARCHAR},
+            </if>
+            <if test="h5ActionIOS != null">
+                #{h5ActionIOS,jdbcType=VARCHAR},
+            </if>
+
+            <if test="h5ActionAndroid != null">
+                #{h5ActionAndroid,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag!=null">
+                #{deleteFlag,jdbcType=SMALLINT},
+            </if>
+            <if test="nativeFlag!=null">
+                #{nativeFlag,jdbcType=SMALLINT},
+            </if>
+            <if test="appUUID !=null">
+                #{appUUID,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qunar.qtalk.management.common.model.Application">
+        update find_application_table
+        <set>
+            <if test="applicationType != null">
+                application_type = #{applicationType,jdbcType=INTEGER},
+            </if>
+            <if test="visibleRange != null">
+                visible_range = #{visibleRange,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationName != null">
+                application_name = #{applicationName,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationClass != null">
+                application_class = #{applicationClass,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationIcon != null">
+                application_icon = #{applicationIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationVersion != null">
+                application_version = #{applicationVersion,jdbcType=INTEGER},
+            </if>
+            <if test="iosVersion != null">
+                ios_version = #{iosVersion,jdbcType=INTEGER},
+            </if>
+            <if test="androidVersion != null">
+                android_version = #{androidVersion,jdbcType=INTEGER},
+            </if>
+            <if test="iosBundle != null">
+                ios_bundle = #{iosBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="androidBundle != null">
+                android_bundle = #{androidBundle,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationDesc != null">
+                application_desc = #{applicationDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disableFlag != null">
+                disable_flag = #{disableFlag,jdbcType=SMALLINT},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="h5Action != null">
+                h5_action = #{h5Action,jdbcType=VARCHAR},
+            </if>
+            <if test="entrance != null">
+                entrance = #{entrance,jdbcType=VARCHAR},
+            </if>
+            <if test="properties != null">
+                properties = #{properties,jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+                module = #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="showNativeNav != null">
+                show_native_nav = #{showNativeNav,jdbcType=VARCHAR},
+            </if>
+            <if test="navTitle != null">
+                nav_title = #{navTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="validPlatform != null">
+                valid_platform = #{validPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="visiblePlatform != null">
+                visible_platform = #{visiblePlatform,jdbcType=SMALLINT},
+            </if>
+            <if test="bundleName != null">
+                bundle_name = #{bundleName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qunar.qtalk.management.common.model.Application">
+    update find_application_table
+    set application_type = #{applicationType,jdbcType=INTEGER},
+      visible_range = #{visibleRange,jdbcType=VARCHAR},
+      application_name = #{applicationName,jdbcType=VARCHAR},
+      application_class = #{applicationClass,jdbcType=VARCHAR},
+      application_icon = #{applicationIcon,jdbcType=VARCHAR},
+      application_version = #{applicationVersion,jdbcType=INTEGER},
+      ios_version = #{iosVersion,jdbcType=INTEGER},
+      android_version = #{androidVersion,jdbcType=INTEGER},
+      ios_bundle = #{iosBundle,jdbcType=VARCHAR},
+      android_bundle = #{androidBundle,jdbcType=VARCHAR},
+      application_desc = #{applicationDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      disable_flag = #{disableFlag,jdbcType=SMALLINT},
+      member_id = #{memberId,jdbcType=INTEGER},
+      h5_action = #{h5Action,jdbcType=VARCHAR},
+      entrance = #{entrance,jdbcType=VARCHAR},
+      properties = #{properties,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      show_native_nav = #{showNativeNav,jdbcType=VARCHAR},
+      nav_title = #{navTitle,jdbcType=VARCHAR},
+      valid_platform = #{validPlatform,jdbcType=VARCHAR},
+      visible_platform = #{visiblePlatform,jdbcType=SMALLINT},
+      bundle_name = #{bundleName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <insert id="insertBatchSelective" parameterType="java.util.List">
+        insert into find_application_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="list[0].id!=null">
+                id,
+            </if>
+            <if test="list[0].applicationType!=null">
+                application_type,
+            </if>
+            <if test="list[0].visibleRange!=null">
+                visible_range,
+            </if>
+            <if test="list[0].applicationName!=null">
+                application_name,
+            </if>
+            <if test="list[0].applicationClass!=null">
+                application_class,
+            </if>
+            <if test="list[0].applicationIcon!=null">
+                application_icon,
+            </if>
+            <if test="list[0].applicationVersion!=null">
+                application_version,
+            </if>
+            <if test="list[0].iosVersion!=null">
+                ios_version,
+            </if>
+            <if test="list[0].androidVersion!=null">
+                android_version,
+            </if>
+            <if test="list[0].iosBundle!=null">
+                ios_bundle,
+            </if>
+            <if test="list[0].androidBundle!=null">
+                android_bundle,
+            </if>
+            <if test="list[0].applicationDesc!=null">
+                application_desc,
+            </if>
+            <if test="list[0].createTime!=null">
+                create_time,
+            </if>
+            <if test="list[0].updateTime!=null">
+                update_time,
+            </if>
+            <if test="list[0].disableFlag!=null">
+                disable_flag,
+            </if>
+            <if test="list[0].memberId!=null">
+                member_id,
+            </if>
+            <if test="list[0].h5Action!=null">
+                h5_action,
+            </if>
+            <if test="list[0].entrance!=null">
+                entrance,
+            </if>
+            <if test="list[0].properties!=null">
+                properties,
+            </if>
+            <if test="list[0].module!=null">
+                module,
+            </if>
+            <if test="list[0].showNativeNav!=null">
+                show_native_nav,
+            </if>
+            <if test="list[0].navTitle!=null">
+                nav_title,
+            </if>
+            <if test="list[0].validPlatform!=null">
+                valid_platform,
+            </if>
+            <if test="list[0].visiblePlatform!=null">
+                visible_platform,
+            </if>
+            <if test="list[0].bundleName!=null">
+                bundle_name,
+            </if>
+        </trim>
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            <trim prefix=" (" suffix=")" suffixOverrides=",">
+                <if test="item.id!=null">
+                    #{item.id,jdbcType=INTEGER},
+                </if>
+                <if test="item.applicationType!=null">
+                    #{item.applicationType,jdbcType=INTEGER},
+                </if>
+                <if test="item.visibleRange!=null">
+                    #{item.visibleRange,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationName!=null">
+                    #{item.applicationName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationClass!=null">
+                    #{item.applicationClass,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationIcon!=null">
+                    #{item.applicationIcon,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationVersion!=null">
+                    #{item.applicationVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.iosVersion!=null">
+                    #{item.iosVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.androidVersion!=null">
+                    #{item.androidVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.iosBundle!=null">
+                    #{item.iosBundle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.androidBundle!=null">
+                    #{item.androidBundle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationDesc!=null">
+                    #{item.applicationDesc,jdbcType=VARCHAR},
+                </if>
+                <if test="item.createTime!=null">
+                    #{item.createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.updateTime!=null">
+                    #{item.updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.disableFlag!=null">
+                    #{item.disableFlag,jdbcType=SMALLINT},
+                </if>
+                <if test="item.memberId!=null">
+                    #{item.memberId,jdbcType=INTEGER},
+                </if>
+                <if test="item.h5Action!=null">
+                    #{item.h5Action,jdbcType=VARCHAR},
+                </if>
+                <if test="item.entrance!=null">
+                    #{item.entrance,jdbcType=VARCHAR},
+                </if>
+                <if test="item.properties!=null">
+                    #{item.properties,jdbcType=VARCHAR},
+                </if>
+                <if test="item.module!=null">
+                    #{item.module,jdbcType=VARCHAR},
+                </if>
+                <if test="item.showNativeNav!=null">
+                    #{item.showNativeNav,jdbcType=VARCHAR},
+                </if>
+                <if test="item.navTitle!=null">
+                    #{item.navTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.validPlatform!=null">
+                    #{item.validPlatform,jdbcType=VARCHAR},
+                </if>
+                <if test="item.visiblePlatform!=null">
+                    #{item.visiblePlatform,jdbcType=SMALLINT},
+                </if>
+                <if test="item.bundleName!=null">
+                    #{item.bundleName,jdbcType=VARCHAR},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update find_application_table
+            <set>
+                <if test="item.applicationType!=null">
+                    application_type=#{item.applicationType,jdbcType=INTEGER},
+                </if>
+                <if test="item.visibleRange!=null">
+                    visible_range=#{item.visibleRange,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationName!=null">
+                    application_name=#{item.applicationName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationClass!=null">
+                    application_class=#{item.applicationClass,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationIcon!=null">
+                    application_icon=#{item.applicationIcon,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationVersion!=null">
+                    application_version=#{item.applicationVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.iosVersion!=null">
+                    ios_version=#{item.iosVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.androidVersion!=null">
+                    android_version=#{item.androidVersion,jdbcType=INTEGER},
+                </if>
+                <if test="item.iosBundle!=null">
+                    ios_bundle=#{item.iosBundle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.androidBundle!=null">
+                    android_bundle=#{item.androidBundle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.applicationDesc!=null">
+                    application_desc=#{item.applicationDesc,jdbcType=VARCHAR},
+                </if>
+                <if test="item.createTime!=null">
+                    create_time=#{item.createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.updateTime!=null">
+                    update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.disableFlag!=null">
+                    disable_flag=#{item.disableFlag,jdbcType=SMALLINT},
+                </if>
+                <if test="item.memberId!=null">
+                    member_id=#{item.memberId,jdbcType=INTEGER},
+                </if>
+                <if test="item.h5Action!=null">
+                    h5_action=#{item.h5Action,jdbcType=VARCHAR},
+                </if>
+                <if test="item.entrance!=null">
+                    entrance=#{item.entrance,jdbcType=VARCHAR},
+                </if>
+                <if test="item.properties!=null">
+                    properties=#{item.properties,jdbcType=VARCHAR},
+                </if>
+                <if test="item.module!=null">
+                    module=#{item.module,jdbcType=VARCHAR},
+                </if>
+                <if test="item.showNativeNav!=null">
+                    show_native_nav=#{item.showNativeNav,jdbcType=VARCHAR},
+                </if>
+                <if test="item.navTitle!=null">
+                    nav_title=#{item.navTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.validPlatform!=null">
+                    valid_platform=#{item.validPlatform,jdbcType=VARCHAR},
+                </if>
+                <if test="item.visiblePlatform!=null">
+                    visible_platform=#{item.visiblePlatform,jdbcType=SMALLINT},
+                </if>
+                <if test="item.bundleName!=null">
+                    bundle_name=#{item.bundleName,jdbcType=text},
+                </if>
+            </set>
+            where
+            id = #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+    <select id="getTheApplicationType" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT application_type from find_application_table where application_name=#{appName} and delete_flag=0 limit 1;
+  </select>
+
+    <select id="getClassName" parameterType="java.lang.String" resultType="java.lang.String">
+     select application_class from find_application_table where application_name=#{appName};
+  </select>
+
+    <select id="getMaxMemberId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT max(member_id) from find_application_table where application_class=#{className} and delete_flag=0;
+  </select>
+
+    <select id="getIOSRN" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+            parameterType="java.lang.Integer">
+    select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.visible_range AS visibleRange,
+        a.application_type  AS appType,
+        a.entrance AS entrance,
+        a.application_version as version,
+        a.bundle_name  AS bundle,
+        a.properties  AS properties,
+        a.ios_bundle AS bundleUrls,
+        a.show_native_nav AS showNativeNav,
+        a.nav_title AS navTitle,
+        a.module AS module,
+        a.visible_platform  AS visiblePlatform
+    from  (select distinct on(application_name)* from find_application_table where ios_version <![CDATA[ <= ]]> #{version} and delete_flag=0 and disable_flag=0 and application_type=2
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+
+    <select id="getAndroidRN" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel"
+            parameterType="java.lang.Integer">
+    select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.visible_range AS visibleRange,
+        a.application_type  AS appType,
+        a.entrance AS entrance,
+        a.application_version as version,
+        a.bundle_name  AS bundle,
+        a.properties  AS properties,
+        a.android_bundle AS bundleUrls,
+        a.show_native_nav AS showNativeNav,
+        a.nav_title AS navTitle,
+        a.module AS module,
+        a.visible_platform  AS visiblePlatform
+    from  (select distinct on(application_name)* from find_application_table where android_version <![CDATA[ <= ]]> #{version} and delete_flag=0 and disable_flag=0 and application_type=2
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+    <select id="getIOSH5" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel">
+    select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.visible_range AS visibleRange,
+        a.h5_action_ios AS memberAction,
+        a.application_type  AS appType,
+        a.application_version as version,
+        a.visible_platform  AS visiblePlatform
+    from  (select distinct on(application_name)* from find_application_table where delete_flag=0 and disable_flag=0 and application_type=3
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+
+    <select id="getAndroidH5" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel">
+        select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.visible_range AS visibleRange,
+        a.h5_action_android AS memberAction,
+        a.application_type  AS appType,
+        a.application_version as version,
+        a.show_native_nav AS showNativeNav,
+        a.nav_title AS navTitle,
+        a.visible_platform  AS visiblePlatform
+    from  (select distinct on(application_name)* from find_application_table where delete_flag=0 and disable_flag=0 and application_type=3
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+
+    <select id="getPCH5" resultType="com.qunar.qtalk.management.common.model.ApplicationReturnModel">
+        select
+        a.member_id as memberId,
+        a.application_name as memberName,
+        a.application_class as groupName,
+        a.application_icon as memberIcon,
+        a.visible_range AS visibleRange,
+        a.h5_action AS memberAction,
+        a.application_type  AS appType,
+        a.application_version as version,
+        a.show_native_nav AS showNativeNav,
+        a.nav_title AS navTitle,
+        a.visible_platform  AS visiblePlatform
+    from  (select distinct on(application_name)* from find_application_table where delete_flag=0 and disable_flag=0 and application_type=3
+    order by application_name, application_version desc) as a order by id;
+</select>
+
+
+    <select id="selectAllApp" resultMap="BaseResultMap">
+        select distinct on(application_name)
+        <include refid="Base_Column_List"/>
+        from find_application_table order by application_name, application_version desc;
+    </select>
+
+
+    <select id="getNativeApp" resultMap="BaseResultMap">
+        select distinct on(application_name)
+        <include refid="Base_Column_List"/>
+        from find_application_table where native_flag=1 and delete_flag =0 and  disable_flag=0 order by application_name, application_version desc;
+    </select>
+
+    <select id="getUploadApp" resultMap="BaseResultMap">
+        select distinct on(application_name)
+        <include refid="Base_Column_List"/>
+        from find_application_table where native_flag=0 and delete_flag=0 and disable_flag=0 order by application_name, application_version
+        desc;
+    </select>
+
+    <select id="getDisableApp" resultMap="BaseResultMap">
+        select distinct on(application_name)
+        <include refid="Base_Column_List"/>
+        from find_application_table where delete_flag=0 and disable_flag=1 order by application_name, application_version
+        desc;
+    </select>
+    <select id="selectAppByUUID" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from find_application_table where app_uuid=#{appUUID} order by application_version desc limit 1;
+    </select>
+
+    <update id="updateDeletFlag">
+        UPDATE find_application_table set delete_flag=#{param} where app_uuid=#{appUUID};
+    </update>
+    <update id="updateDisableFlag">
+        UPDATE find_application_table set disable_flag=#{param} where app_uuid=#{appUUID};
+    </update>
+
+    <insert id="addGroup">
+        INSERT into find_class_table (group_name, group_icon) values (#{groupName},#{groupIcon});
+    </insert>
+
+
+    <select id="getGroupName" resultType="com.qunar.qtalk.management.common.model.ApplicationGroup">
+    select
+    id as groupId,
+    group_name as groupName,
+    group_icon as groupIcon
+    from find_class_table;
+    </select>
+
+    <select id="getApplicationGroupByName" resultType="com.qunar.qtalk.management.common.model.ApplicationGroup"
+            parameterType="java.lang.String">
+    select
+    id as groupId,
+    group_name as groupName,
+    group_icon as groupIcon
+    from find_class_table where group_name=#{groupName};
+    </select>
+
+</mapper>

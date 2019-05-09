@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.qtalk.management.mapper.QtalkUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.qunar.qtalk.management.common.dto.QtalkUserModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="dep1" property="dep1" jdbcType="VARCHAR"/>
+        <result column="dep2" property="dep2" jdbcType="VARCHAR"/>
+        <result column="dep3" property="dep3" jdbcType="VARCHAR"/>
+        <result column="dep4" property="dep4" jdbcType="VARCHAR"/>
+        <result column="dep5" property="dep5" jdbcType="VARCHAR"/>
+        <result column="pinyin" property="pinyin" jdbcType="VARCHAR"/>
+        <result column="frozen_flag" property="frozenFlag" jdbcType="INTEGER"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR"/>
+        <result column="hire_flag" property="hireFlag" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="initialpwd" property="initialpwd" jdbcType="VARCHAR"/>
+        <result column="ps_deptid" property="psDeptid" jdbcType="VARCHAR"/>
+        <result column="hire_type" property="hireType" jdbcType="VARCHAR"/>
+        <result column="pwd_salt" property="pwdSalt" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        host_id,user_id,user_name,department,tel,dep1,dep2,dep3,dep4,dep5,pinyin,frozen_flag,version,user_type,hire_flag,
+        gender,password,ps_deptid,pwd_salt
+    </sql>
+
+    <sql id="Base_Column_List_simple">
+        user_id,user_name,department,tel,gender,email
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.qunar.qtalk.management.common.dto.QtalkUserModel">
+        insert into host_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hostId != null">
+                host_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="department != null">
+                department,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="dep1 != null">
+                dep1,
+            </if>
+            <if test="dep2 != null">
+                dep2,
+            </if>
+            <if test="dep3 != null">
+                dep3,
+            </if>
+            <if test="dep4 != null">
+                dep4,
+            </if>
+            <if test="dep5 != null">
+                dep5,
+            </if>
+            <!--<if test="userName != null">-->
+            <!--pinyin,-->
+            <!--</if>-->
+            <if test="frozenFlag != null">
+                frozen_flag,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="hireFlag != null">
+                hire_flag,
+            </if>
+
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="initialpwd != null">
+                initialpwd,
+            </if>
+            <if test="psDeptid != null">
+                ps_deptid,
+            </if>
+            <if test="hireType != null">
+                hireType,
+            </if>
+            <if test="pwdSalt != null">
+                pwd_salt,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hostId != null">
+                #{hostId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                #{department,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="dep1 != null">
+                #{dep1,jdbcType=VARCHAR},
+            </if>
+            <if test="dep2 != null">
+                #{dep2,jdbcType=VARCHAR},
+            </if>
+            <if test="dep3 != null">
+                #{dep3,jdbcType=VARCHAR},
+            </if>
+            <if test="dep4 != null">
+                #{dep4,jdbcType=VARCHAR},
+            </if>
+            <if test="dep5 != null">
+                #{dep5,jdbcType=VARCHAR},
+            </if>
+            <!--<if test="userName != null">-->
+            <!--hanzi_to_pinyin(#{userName}),-->
+            <!--</if>-->
+            <if test="frozenFlag != null">
+                #{frozenFlag,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="hireFlag != null">
+                #{hireFlag,jdbcType=INTEGER},
+            </if>
+
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR },
+            </if>
+            <if test="initialpwd != null">
+                #{initialpwd,jdbcType=VARCHAR},
+            </if>
+            <if test="psDeptid != null">
+                #{ps_deptid,jdbcType=VARCHAR},
+            </if>
+            <if test="hireType != null">
+                #{hireType,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdSalt != null">
+                #{pwdSalt,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectMaxVersion" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select max(version) from host_users where host_id=#{hostId} limit 1;
+</select>
+
+    <insert id="insertVcardVersion">
+        insert into vcard_version (username,host,version,profile_version,gender)
+                       values (#{username},#{host},#{version},#{profileVersion},#{gender})
+                       ON conflict(username,host) DO UPDATE
+    SET profile_version=vcard_version.profile_version+1,gender =#{gender},version =vcard_version.version+1;;
+    </insert>
+
+    <select id="selectUserByUserIdAndHostId" resultType="java.lang.String">
+        select user_id from host_users where host_id=#{hostId}
+        <if test="userIds !=null and userIds.size()>0">
+            AND user_id IN
+            <foreach collection="userIds" item="item" open="(" close=")" separator=",">
+                #{item.userId}
+            </foreach>
+        </if>
+    </select>
+    <select id="selectUserByTel" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_simple"/>
+        from host_users where tel =#{tel} and host_id = #{hostId};
+    </select>
+
+    <select id="selectUserByUserName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_simple"/>
+        from host_users where user_name =#{userName} and host_id=#{hostId};
+    </select>
+    <select id="PageSearchUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_simple"/>
+        from host_users where host_id=#{hostId} and hire_flag=1 order by id limit #{pageSize} offset #{offset};
+    </select>
+
+    <select id="getUserCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from host_users where hire_flag=1 and host_id=#{hostId};
+    </select>
+
+    <!--<update id="updateUser" parameterType="com.qunar.qtalk.management.common.dto.QtalkUserModel">-->
+    <!--update host_users set user_name=#{userName},dep1=#{dep1},dep2=#{dep2},dep3=#{dep3},dep4=#{dep4},dep5=#{dep5},-->
+    <!--department=#{department},gender#{gender},tel=#{tel},version=#{version} where user_id=#{userId} and host_id=#{hostId};-->
+    <!--</update>-->
+    <update id="updateUser" parameterType="com.qunar.qtalk.management.common.dto.QtalkUserModel">
+        update host_users
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                department = #{department,jdbcType=VARCHAR},
+            </if>
+            <if test="dep1 != null">
+                dep1 = #{dep1,jdbcType=VARCHAR},
+            </if>
+            <if test="dep2 != null">
+                dep2 = #{dep2,jdbcType=VARCHAR},
+            </if>
+            <if test="dep3 != null">
+                dep3 = #{dep3,jdbcType=VARCHAR},
+            </if>
+            <if test="dep4 != null">
+                dep4 = #{dep4,jdbcType=VARCHAR},
+            </if>
+            <if test="dep5 != null">
+                dep5 = #{dep5,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id=#{userId} and host_id=#{hostId}
+    </update>
+
+    <delete id="deleteUser">
+        update host_users set hire_flag=0,version=#{version} where user_id=#{userId} and host_id=#{hostId};
+    </delete>
+
+    <select id="selectUserByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from host_users where user_id=#{userId} and host_id=#{hostId};
+    </select>
+
+    <select id="selectUserByUserNamePage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_simple"/>
+        from host_users where host_id=#{hostId} and hire_flag=1 AND user_name=#{userName} order by id limit #{pageSize}
+        offset #{offset};
+    </select>
+
+    <select id="selectUserByTelPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_simple"/>
+        from host_users where host_id=#{hostId} and hire_flag=1 AND tel=#{tel} order by id limit #{pageSize} offset
+        #{offset};
+    </select>
+
+    <select id="selectUserByUserNameCount" resultType="java.lang.Integer">
+        select count(*) from host_users where user_name=#{userName} and host_id=#{hostId} and hire_flag =1 limit 1;
+    </select>
+
+    <select id="selectUserByUserTelCount" resultType="java.lang.Integer">
+        select count(*) from host_users where tel=#{tel} and host_id=#{hostId} and hire_flag =1 limit 1;
+    </select>
+
+
+    <update id="updateHireFlag">
+        update host_users set hire_flag=1 where user_id=#{userId} and host_id=#{hostId};
+    </update>
+
+
+    <select id="getDepartment" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select distinct (department) from host_users where hire_flag=1 and host_id=#{hostId};
+    </select>
+</mapper>
